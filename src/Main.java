@@ -14,10 +14,10 @@ public class Main {
         int i = 0;
 
         while (item < itemNumbers && i < 20) {
-            int col = Math.min(itemNumbers - item, (int) (Math.random() * storageSize) + 1);
-            new Producer(col, manager, i);
-            new Consumer(col, manager, i);
-            item += col;
+            int elements_to_add = Math.min(itemNumbers - item, (int) (Math.random() * storageSize) + 1);
+            new Producer(elements_to_add, manager, i);
+            new Consumer(elements_to_add, manager, i);
+            item += elements_to_add;
             i++;
         }
     }
