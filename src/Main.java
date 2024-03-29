@@ -1,24 +1,21 @@
+import java.lang.reflect.Array;
 
 public class Main {
 
     public static void main(String[] args) {
-        Main main = new Main();
-        int storageSize = 10;
-        int itemNumbers = 40;
-        main.starter(storageSize, itemNumbers);
-    }
-
-    private void starter(int storageSize, int itemNumbers) {
+        int storageSize = 5;
+        final int consumers = 4;
+        final int producers = 3;
+        int[] items_consumer = {4, 5, 6, 7};
+        int[] items_producer = {7, 8, 7};
         Manager manager = new Manager(storageSize);
-        int item = 0;
-        int i = 0;
 
-        while (item < itemNumbers) {
-            int elements_to_add = Math.min(itemNumbers - item, (int) (Math.random() * storageSize) + 1);
-            new Producer(elements_to_add, manager, i);
-            new Consumer(elements_to_add, manager, i);
-            item += elements_to_add;
-            i++;
+        for(int i=0; i<consumers; i++){
+            new Consumer(items_consumer[i], manager, i);
         }
+        for(int i=0; i<producers; i++){
+            new Producer(items_producer[i], manager, i);
+        }
+
     }
 }
